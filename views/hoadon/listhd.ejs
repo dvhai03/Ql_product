@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="/css/mdb.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <head>
+
+        <script>
+            function locTL(evt) {
+                if (evt.target.value === "a") {
+                    location.href = '/ádads';
+                } else {
+                    location.href = '/hoadon/?trangthai=' + evt.target.value;
+
+                }
+
+
+
+            }
+         //-->
+
+        </script>
+
+    </head>
+
+<body>
+    <div class="container">
+        <%- include('../inc/top') %>
+            <div class="p-1 bg-light mb-4">
+                <h1 class="">Đơn Hàng</h1>
+                <!-- Breadcrumb -->
+                <nav class="d-flex">
+                    <h6 class="mb-0">
+                        <a href="/home" class="text-reset">Home</a>
+                        <span>/</span>
+                        <a href="/product" class="text-reset"><u>Đơn Hàng</u></a>
+                    </h6>
+                </nav>
+                <!-- Breadcrumb -->
+            </div>
+            <div class="row mb-2">
+                <div class="col-6 col-md-2">
+                    <div class="input-group">
+                        <div class="form-outline">
+                            <input type="search" id="form1" class="form-control" />
+                            <label class="form-label" for="form1">Search</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <select class="form-select" aria-label="Default select example " onchange="locTL(event)">
+                        <option selected disabled value="">Lọc </option>
+                        <option value="Chưa xác nhận">Chưa xác nhận</option>
+                        <option value="Đã xác nhận">Đã Xác nhận</option>
+                        <option value="Đã hoàn thành">Đã hoàn thành</option>
+                        <option value="Đã hủy">Đã hủy</option>
+                    </select>
+                </div>
+
+
+            </div>
+
+
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">_id</th>
+                            <th scope="col">_id người đặt</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Ảnh</th>
+                            <th scope="col">số lượng</th>
+                            <th scope="col">Tổng tiền</th>
+                            <th scope="col">Trạng thái </th>
+                            <th scope="col">Xác nhận</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% arrHd.forEach(row=> { %>
+                            <tr>
+                                <td>
+                                    <%= row._id %>
+                                </td>
+                                <td>
+                                    <%= row.id_user._id %>
+                                        </a>
+                                </td>
+                                <td>
+                                    <%=row.id_sanpham.tensp %>
+                                </td>
+
+                                <td> <img style="width: 100px;height: 100px;" src="/<%=row.id_sanpham.anh%> " /></td>
+                                <td>
+                                    <%=row.soluong %>
+                                </td>
+                                <td>
+                                    <%=(row.soluong*row.id_sanpham.giatien) %>
+                                </td>
+                                <td>
+                                    <%=(row.trangthai) %>
+                                </td>
+                                <th>
+                                    <a href="http://localhost:3000/hoadon/xacnhan/<%=row._id %> "
+                                        style="color:#386BC0;"><i class="fas fa-angle-down fa-2x "></i></a>
+                                    <a style="color:#386BC0;"><i class="fas fa-circle-xmark  fa-2x mx-2"></i></a>
+                                </th>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+                <div>
+                    <nav aria-label="Page navigation example ">
+                        <ul class="pagination justify-content-end pagination-circle">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+            <!--Main Navigation-->
+            <%- include('../inc/bottom') %>
+
+
+
+
+    </div>
+
+
+
+    <script type="text/javascript" src="/js/a.js"></script>
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
+</body>
+
+</html>

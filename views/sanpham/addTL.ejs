@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="/css/mdb.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <head>
+      <script>
+         function Remove(a) {
+          var retVal = confirm("Do you really want to delete?"+a );
+               if( retVal == true ){
+              location.href= '/product/category/delete_tl/'+a;
+                  return true;
+               }
+               else{
+                  Document.write ("User does not want to continue!");
+                  return false;
+               }
+            }
+      </script>
+
+    </head>
+
+<body>
+    <div class="container">
+        <%- include('../inc/top') %>
+        <div class="p-1 bg-light mb-4">
+            <h1 class="">Product</h1>
+            <!-- Breadcrumb -->
+            <nav class="d-flex">
+              <h6 class="mb-0">
+                <a href="/home" class="text-reset">Home</a>
+                <span>/</span>
+                <a href="/product" class="text-reset">Product</a>
+                <span>/</span>
+                <a href="" class="text-reset"><u>Category</u></a>
+              </h6>
+            </nav>
+            <!-- Breadcrumb -->
+          </div>
+         
+          <div class="row mb-2">
+            <div class="col-md-8"> <form >
+                <input type="search" class="form-control " placeholder="Tìm kiếm " aria-label="Search" style="width: 200px; height: 40px;" /> 
+            </form></div>
+            <div class="col-md-4" style="text-align: right;"><button type="button" class="btn btn-primary " data-mdb-toggle="modal" data-mdb-target="#exampleModal" >
+                <i class="fas fa-plus  fa-2"></i>
+             Thêm
+              </button></div>
+          </div>
+        
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Thể Loại</th>
+                        <th scope="col">Tác vụ</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% arrTL.forEach((row)=> { %>
+                      <tr>
+                        <td>
+                          <%= row._id %>
+                        </td>
+                        <td>
+                          <%= row.ten_tl %>
+                        </td>
+                        <th>
+                         <a  href="/product/category/delete_tl/<%=row._id%>"  ><i class="fas fa-trash-alt fa-2x mx-3"></i></a> 
+                         <a href="/product/category/edit_tl/<%=row._id %> "> <i class="fas fa-pen-square fa-2x"></i></a>
+                        </th>
+                      </tr>
+                      <% }) %>
+                  </tbody>
+            </table>
+            <div>
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination justify-content-end pagination-circle">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+        <!--Main Navigation-->
+        <%- include('../inc/bottom') %>
+            
+        
+
+
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thêm Loai San Pham</h5>
+              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="mx-1 mx-md-4" method="post" action="">
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="form3Example3c" class="form-control" name="ten_tl"/>
+                        <label class="form-label" for="form3Example3c">Tên thể loại</label>
+                      </div>
+                    </div>
+  
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+  
+
+                    
+                  </form>
+            </div>
+          
+            
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="/js/a.js"></script>
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
+</body>
+
+</html>

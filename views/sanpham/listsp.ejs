@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="/css/mdb.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <head>
+     
+      <script>
+        function Remove(a) {
+          var retVal = confirm("Do you really want to delete?" );
+               if( retVal == true ){
+              location.href = '/product/delete/'+a
+                  return true;
+               }
+               else{
+                  Document.write ("User does not want to continue!");
+                  return false;
+               }
+            }
+            function locTL(evt) {
+              if(evt.target.value==="a"){
+                location.href='/product/ádads';
+              }else{
+                location.href='/product/?id_theloai='+evt.target.value;
+
+              }
+              
+            
+   
+}
+         //-->
+        
+      </script>
+
+    </head>
+
+<body>
+    <div class="container">
+        <%- include('../inc/top') %>
+        <div class="p-1 bg-light mb-4">
+            <h1 class="">Product</h1>
+            <!-- Breadcrumb -->
+            <nav class="d-flex">
+              <h6 class="mb-0">
+                <a href="/home" class="text-reset">Home</a>
+                <span>/</span>
+                <a href="/product" class="text-reset"><u>Product</u></a>
+              </h6>
+            </nav>
+            <!-- Breadcrumb -->
+          </div>
+          <div class="row mb-2" >
+            <div class="col-6 col-md-2"><div class="input-group">
+              <div class="form-outline">
+                <input type="search" id="form1" class="form-control" />
+                <label class="form-label" for="form1">Search</label>
+              </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-2"> 
+           
+              <select class="form-select" aria-label="Default select example"  onchange="locTL(event)" >
+                <option selected disabled >Thể Loại </option>
+              
+               <% arrTL.forEach((row) => { %>
+  
+               <option value="<%=row._id  %> "> <%=row.ten_tl  %>  </option>
+               
+               <% }) %>
+              
+                
+              </select></div>
+            <div class="col-6 col-md-8 " style="text-align: right;"> 
+              <a href="/product/addSP" class="btn btn-primary"  >
+              <i class="fas fa-plus  fa-2"></i>
+           Thêm
+              </a></div>
+          </div>
+      
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên sản phẩm </th>
+                        <th scope="col">Thể Loại</th>
+                        <th scope="col">Ảnh</th>
+                        <th scope="col">Mô tả</th>
+                        <th scope="col">Giá tiền</th>
+                        <th scope="col">Tác vụ</th>
+
+
+                    </tr>
+                </thead>
+              
+                  <tbody>
+                    <% arrSp.forEach(row=> { %>
+                      <tr>
+                        <td>
+                          <%= row._id %>
+                        </td>
+                        <td>
+                          <a style="color: black;" href="/product/chitiet/<%=row._id %>"><%= row.tensp %></a>
+                        </td>
+                        <td>
+                          <%=row.id_theloai.ten_tl %>
+                        </td>
+                        
+                        <td> <img style="width: 100px;height: 100px;" src="/<%=row.anh%> "/></td>
+                          <td>
+                            <%=row.mota %>
+                          </td>
+                          <td>
+                            <%=row.giatien %>
+                          </td>
+                        <th>
+                        <a href="/product/edit/<%=row._id %>"><i class="fas fa-pen-square fa-2x"></i></a>
+                         <a style="color:#386BC0;" onclick="Remove('<%=row._id%>')" ><i  class="fas fa-trash-alt fa-2x "></i></i> </a>
+
+                        </th>
+                      </tr>
+                      <% }) %>
+                  </tbody>
+            </table>
+            <div>
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination justify-content-end pagination-circle">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+        <!--Main Navigation-->
+        <%- include('../inc/bottom') %>
+            
+        
+
+
+    </div>
+   
+
+      
+      <script type="text/javascript" src="/js/a.js"></script>
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
+</body>
+
+</html>
+   

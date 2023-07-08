@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Material Design for Bootstrap</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="/css/mdb.min.css" />
+
+  <head>
+    <script>
+      function xoaUser(a) {
+        var retVal = confirm("Do you really want to delete?");
+        if (retVal == true) {
+        location.href='/user/remove/'+a;
+          return true;
+        }
+       
+      }
+      function timkiemUser(){
+        var key =  document.getElementById("key").value;
+        if(key!==''){
+          location.href='/user/?key='+key;
+        }
+        
+      }
+      function locTL(evt) {
+             location.href='/user/?des='+evt.target.value;
+            }
+              
+    
+       //-->
+
+    </script>
+  </head>
+
+<body>
+  <div class="container">
+    <%- include('../inc/top') %>
+      <div class="p-1 bg-light mb-4">
+        <h1 class="">User</h1>
+        <!-- Breadcrumb -->
+        <nav class="d-flex">
+          <h6 class="mb-0">
+            <a href="home" class="text-reset">Home</a>
+            <span>/</span>
+            <a href="" class="text-reset"><u>User</u></a>
+          </h6>
+        </nav>
+        <!-- Breadcrumb -->
+      </div>
+      <div class="row mb-2">
+        <div class="col-6 col-md-2">
+          <div class="input-group">
+            <div class="form-outline">
+              <input type="search" id="key" class="form-control" />
+              <label class="form-label" for="form1"  >Search</label>
+            
+            </div>
+            <button onclick="timkiemUser()">Timkiem</button>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <select class="form-select" aria-label="Default select example " onchange="locTL(event)">
+            <option selected disabled value="">Sắp Xếp </option>
+            <option value="asc">A--->z</option>
+            <option value="desc">Z--->A</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-8 " style="text-align: right;">
+          <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+            <i class="fas fa-plus  fa-2"></i>
+            Thêm
+          </button>
+        </div>
+      </div>
+      <div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Vai trò</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+
+              <th scope="col">Tác Vụ</th>
+
+
+            </tr>
+          </thead>
+          <tbody>
+            <% arrUser.forEach((row)=> { %>
+              <tr>
+                <td>
+                  <%= row._id %>
+                </td>
+                <td>
+                  <%= row.vaitro %>
+                </td>
+                <td>
+                  <%=row.hoten %>
+                </td>
+                <td>
+                  <%=row.email %>
+                </td>
+
+                <th>
+                  <a style="color:#386BC0;" onclick="xoaUser('<%=row._id%>')">
+                    <i class="fas fa-trash-alt fa-2x mx-3"></i></a>
+                  <a  href="/user/edit/<%=row._id  %> "><i class="fas fa-pen-square fa-2x"></i></a>
+                </th>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+        <div>
+          <nav aria-label="Page navigation example ">
+            <ul class="pagination justify-content-end pagination-circle">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+
+              <li class="page-item active" aria-current="page"><a class="page-link" href="#">1 </a></li>
+              <li class="page-item " aria-current="page">
+                <a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+      </div>
+      <!--Main Navigation-->
+      <%- include('../inc/bottom') %>
+
+
+
+
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modalAdduser" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalAdduser">Add User</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="mx-1 mx-md-4 needs-validation" action="" method="post" novalidate>
+            <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                <input type="text" id="name" class="form-control " name="hoten" required />
+                <label class="form-label" for="name">Your Name</label>
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+            </div>
+
+
+            <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                <input type="email" id="form3Example3c" class="form-control" name="email" />
+                <label class="form-label" for="form3Example3c">Your Email</label>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                <input type="password" id="form3Example4c" class="form-control" name="matkhau" />
+                <label class="form-label" for="form3Example4c">Password</label>
+              </div>
+            </div>
+            <div class="d-flex flex-row align-items-center mb-4">
+              <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+              <div class="form-outline flex-fill mb-0">
+                <input type="password" id="form3Example4cd" class="form-control" />
+                <label class="form-label" for="form3Example4cd">Repeat your password</label>
+              </div>
+            </div>
+            <div class="m-1">Vai Trò : </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineCheckbox1" name="vaitro" value="Quan Li" />
+              <label class="form-check-label" for="inlineCheckbox1">Quản Lí</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="inlineCheckbox2" name="vaitro" value="Nguoi Dung" />
+              <label class="form-check-label" for="inlineCheckbox2">Người Dùng </label>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="/js/mdb.min.js"></script>
+  <script type="text/javascript" src="/js/validate.js"></script>
+
+  <!-- Custom scripts -->
+  <script type="text/javascript"></script>
+</body>
+
+</html>
